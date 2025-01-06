@@ -151,6 +151,8 @@ public class GravenMemberService {
         long xp = gMember.experience();
         long xpToNextLevel = levelUtils.xpForNextLevelAt(gMember.level());
 
+        System.out.println(xp + " ; " + xpToNextLevel + " ; " + member.getEffectiveName());
+
         if (xp < xpToNextLevel) {
             return false;
         }
