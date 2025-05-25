@@ -1,14 +1,26 @@
-version: '3'
+---
 services:
   pgsql:
-    image: postgres
-    ports:
-      - "5432:5432"
+    image: postgres:16
+    restart: unless-stopped
     environment:
       POSTGRES_USER: pg
       POSTGRES_PASSWORD: pg
     volumes:
-      - pg:/var/lib/postgresql/data
+      - ./data/pg:/var/lib/postgresql/data
+    networks:
+      - bot-network
 
-volumes:
-  pg:
+  bot:
+    restart: unless-stopped
+    build:
+      context: ./source
+      dockerfile: Dockerfile
+    volumes:
+      - ./data/bot/application.properties:/app/config/application.properties:ro
+    networks:
+      - bot-network
+
+networks:
+  bot-network:
+    driver: bridge
