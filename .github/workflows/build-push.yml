@@ -27,6 +27,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
 
+      - name: chmod gradlew
+        run: chmod +x gradlew
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
