@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-      - lindwen/fix-feat
+    tags:
+      - 'v*'
 
 jobs:
   build-and-push:
@@ -16,6 +17,8 @@ jobs:
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
+        with:
+          platforms: "arm64,amd64"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -26,6 +29,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
+  
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/gravendev/gravenlevelling
+          tags: |
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=semver,pattern={{version}},enable=${{ startsWith(github.ref, 'refs/tags/v') }}
+            type=semver,pattern={{major}}.{{minor}},enable=${{ startsWith(github.ref, 'refs/tags/v') }}
 
       - name: chmod gradlew
         run: chmod +x gradlew
@@ -34,7 +47,10 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           platforms: linux/amd64,linux/arm64
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           context: .
           file: Dockerfile
-          push: true
-          tags: ghcr.io/gravendev/gravenlevelling:latest
