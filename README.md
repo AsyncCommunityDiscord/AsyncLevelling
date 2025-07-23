@@ -4,9 +4,9 @@
   This project is under the <a href="https://choosealicense.com/licenses/gpl-3.0/">GNU GPL v3</a> license<br/><br/>
 </h3>
 
-# <p align="center">`GravenLevelling`</p>
+# <p align="center">`AsyncLevelling`</p>
 
-All the projects in the <code>GravenDev</code> organisation are used by the discord server <code>
+All the projects in the <code>AsyncCommunityDiscord</code> organisation are used by the discord server <code>
 discord.gg/graven</code> both by the moderators and the members.
 Most of the contributors are part of the staff but the members are also allowed to contribute.
 
@@ -15,7 +15,7 @@ Most of the contributors are part of the staff but the members are also allowed 
 
 | Global information |                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 |--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Description        | GravenLevelling is the bot used to manage the activity levels on the Graven - Développement discord server. It tracks and manages users' activity levels, allowing for a dynamic and engaging community experience.                                                                                                                                                                                |
+| Description        | AsyncLevelling is the bot used to manage the activity levels on the Async - Community discord server. It tracks and manages users' activity levels, allowing for a dynamic and engaging community experience.                                                                                                                                                                                |
 | Collaborators      | <img src="https://avatars.githubusercontent.com/u/44524788?v=4" alt="drawing" width="25"/> [RedsTom](https://github.com/RedsTom)                                                                                                                                                                                                                                                                 |
 | Version            | 1.0.0                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
