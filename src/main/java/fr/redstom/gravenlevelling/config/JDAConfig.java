@@ -32,8 +32,7 @@ public class JDAConfig {
                                 GatewayIntent.GUILD_MESSAGES,
                                 GatewayIntent.MESSAGE_CONTENT,
                                 GatewayIntent.GUILD_MEMBERS,
-                                GatewayIntent.GUILD_VOICE_STATES,
-                                GatewayIntent.GUILD_MEMBERS)
+                                GatewayIntent.GUILD_VOICE_STATES)
                         .setMemberCachePolicy(MemberCachePolicy.ALL)
                         .build();
 
