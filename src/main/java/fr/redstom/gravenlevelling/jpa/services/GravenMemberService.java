@@ -161,7 +161,7 @@ public class GravenMemberService {
             gMember.level(gMember.level() + 1);
 
             xpToNextLevel = levelUtils.xpForNextLevelAt(gMember.level());
-        } while(gMember.experience() > xpToNextLevel);
+        } while (gMember.experience() > xpToNextLevel);
 
         rewardService.grantReward(member, gMember.level());
         notificationService.sendNotification(member, gMember.level());
