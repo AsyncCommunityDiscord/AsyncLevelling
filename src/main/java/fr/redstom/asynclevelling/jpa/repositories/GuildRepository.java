@@ -6,4 +6,4 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GravenGuildRepository extends CrudRepository<GravenGuild, Long> {}
+public interface GuildRepository extends CrudRepository<GravenGuild, Long> {}

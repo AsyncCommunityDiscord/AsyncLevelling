@@ -2,7 +2,7 @@ package fr.redstom.asynclevelling.jpa.services;
 
 import fr.redstom.asynclevelling.jpa.entities.GravenGuild;
 import fr.redstom.asynclevelling.jpa.entities.GravenGuildReward;
-import fr.redstom.asynclevelling.jpa.repositories.GravenGuildRewardRepository;
+import fr.redstom.asynclevelling.jpa.repositories.GuildRewardRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -24,7 +24,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class GuildRewardService {
 
-    private final GravenGuildRewardRepository guildRewardRepository;
+    private final GuildRewardRepository guildRewardRepository;
 
     private final GuildService guildService;
 

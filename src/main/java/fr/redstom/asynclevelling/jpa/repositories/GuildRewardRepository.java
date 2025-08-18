@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface GravenGuildRewardRepository extends CrudRepository<GravenGuildReward, Long> {
+public interface GuildRewardRepository extends CrudRepository<GravenGuildReward, Long> {
 
     List<GravenGuildReward> findAllByGuildOrderByLevelAsc(GravenGuild guild);
 

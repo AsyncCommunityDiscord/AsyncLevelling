@@ -1,7 +1,7 @@
 package fr.redstom.asynclevelling.jpa.services;
 
 import fr.redstom.asynclevelling.jpa.entities.GravenUser;
-import fr.redstom.asynclevelling.jpa.repositories.GravenUserRepository;
+import fr.redstom.asynclevelling.jpa.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final GravenUserRepository userRepository;
+    private final UserRepository userRepository;
 
     public GravenUser getOrCreateByDiscordUser(User user) {
         return userRepository

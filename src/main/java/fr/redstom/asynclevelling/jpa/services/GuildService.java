@@ -2,8 +2,8 @@ package fr.redstom.asynclevelling.jpa.services;
 
 import fr.redstom.asynclevelling.jpa.entities.GravenGuild;
 import fr.redstom.asynclevelling.jpa.entities.GravenMember;
-import fr.redstom.asynclevelling.jpa.repositories.GravenGuildRepository;
-import fr.redstom.asynclevelling.jpa.repositories.GravenMemberRepository;
+import fr.redstom.asynclevelling.jpa.repositories.GuildRepository;
+import fr.redstom.asynclevelling.jpa.repositories.MemberRepository;
 import fr.redstom.asynclevelling.utils.ImageGenerator;
 
 import jakarta.annotation.Nullable;
@@ -29,8 +29,8 @@ import javax.imageio.ImageIO;
 @RequiredArgsConstructor(onConstructor_ = @__(@Lazy))
 public class GuildService {
 
-    private final GravenGuildRepository guildRepository;
-    private final GravenMemberRepository memberRepository;
+    private final GuildRepository guildRepository;
+    private final MemberRepository memberRepository;
 
     private final MemberService memberService;
 

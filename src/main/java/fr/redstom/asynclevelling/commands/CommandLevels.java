@@ -1,7 +1,7 @@
 package fr.redstom.asynclevelling.commands;
 
 import fr.redstom.asynclevelling.jpa.entities.GravenMember;
-import fr.redstom.asynclevelling.jpa.repositories.GravenMemberRepository;
+import fr.redstom.asynclevelling.jpa.repositories.MemberRepository;
 import fr.redstom.asynclevelling.jpa.services.MemberService;
 import fr.redstom.asynclevelling.utils.jda.Command;
 import fr.redstom.asynclevelling.utils.jda.CommandExecutor;
@@ -23,7 +23,7 @@ import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 public class CommandLevels implements CommandExecutor {
 
     private final MemberService memberService;
-    private final GravenMemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public SlashCommandData data() {
