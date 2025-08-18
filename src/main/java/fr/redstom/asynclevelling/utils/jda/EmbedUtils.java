@@ -1,6 +1,6 @@
 package fr.redstom.asynclevelling.utils.jda;
 
-import fr.redstom.asynclevelling.utils.GravenColors;
+import fr.redstom.asynclevelling.utils.ColorPalette;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 
@@ -10,6 +10,6 @@ public class EmbedUtils {
         return new EmbedBuilder()
                 .setTitle("❌ Erreur !")
                 .setDescription(description)
-                .setColor(GravenColors.RED);
+                .setColor(ColorPalette.RED);
     }
 }
