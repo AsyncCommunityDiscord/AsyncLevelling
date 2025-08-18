@@ -1,6 +1,6 @@
 package fr.redstom.asynclevelling.utils;
 
-import static fr.redstom.asynclevelling.utils.GravenColors.*;
+import static fr.redstom.asynclevelling.utils.ColorPalette.*;
 
 import fr.redstom.asynclevelling.jpa.entities.GravenMember;
 import fr.redstom.asynclevelling.jpa.services.GravenMemberService;

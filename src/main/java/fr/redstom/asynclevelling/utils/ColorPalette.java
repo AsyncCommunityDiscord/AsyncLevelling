@@ -2,7 +2,7 @@ package fr.redstom.asynclevelling.utils;
 
 import java.awt.*;
 
-public interface GravenColors {
+public interface ColorPalette {
 
     Color GREEN = new Color(0x21bf61);
     Color RED = new Color(0xd63838);

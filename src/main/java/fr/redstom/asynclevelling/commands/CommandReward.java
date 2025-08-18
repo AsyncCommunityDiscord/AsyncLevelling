@@ -4,7 +4,7 @@ import static fr.redstom.asynclevelling.buttons.DeleteButton.DELETE_BUTTON;
 
 import fr.redstom.asynclevelling.jpa.entities.GravenGuildReward;
 import fr.redstom.asynclevelling.jpa.services.GravenGuildRewardService;
-import fr.redstom.asynclevelling.utils.GravenColors;
+import fr.redstom.asynclevelling.utils.ColorPalette;
 import fr.redstom.asynclevelling.utils.jda.Command;
 import fr.redstom.asynclevelling.utils.jda.CommandExecutor;
 import fr.redstom.asynclevelling.utils.jda.EmbedUtils;
@@ -88,7 +88,7 @@ public class CommandReward implements CommandExecutor {
                                                             + level
                                                             + "**.\n")
                                                     .trim())
-                                    .setColor(GravenColors.GREEN)
+                                    .setColor(ColorPalette.GREEN)
                                     .build())
                     .addActionRow(DELETE_BUTTON)
                     .queue();
@@ -140,7 +140,7 @@ public class CommandReward implements CommandExecutor {
                                                 + " n'est plus une récompense au **niveau "
                                                 + level
                                                 + "**.")
-                                .setColor(GravenColors.GREEN)
+                                .setColor(ColorPalette.GREEN)
                                 .build())
                 .addActionRow(DELETE_BUTTON)
                 .queue();
@@ -165,7 +165,7 @@ public class CommandReward implements CommandExecutor {
                         new EmbedBuilder()
                                 .setTitle("Récompenses sur " + event.getGuild().getName())
                                 .setDescription(rewards.toString())
-                                .setColor(GravenColors.PRIMARY)
+                                .setColor(ColorPalette.PRIMARY)
                                 .setAuthor(
                                         event.getGuild().getName(),
                                         null,
