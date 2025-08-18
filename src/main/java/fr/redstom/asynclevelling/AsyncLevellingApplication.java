@@ -8,9 +8,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableScheduling
-public class GravenLevellingApplication {
+public class AsyncLevellingApplication {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(GravenLevellingApplication.class).build().run(args);
+        new SpringApplicationBuilder(AsyncLevellingApplication.class).build().run(args);
     }
 }
