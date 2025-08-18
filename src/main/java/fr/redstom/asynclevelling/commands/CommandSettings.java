@@ -1,6 +1,6 @@
 package fr.redstom.asynclevelling.commands;
 
-import fr.redstom.asynclevelling.jpa.services.GravenGuildSettingsService;
+import fr.redstom.asynclevelling.jpa.services.GuildSettingsService;
 import fr.redstom.asynclevelling.utils.jda.Command;
 import fr.redstom.asynclevelling.utils.jda.CommandExecutor;
 import fr.redstom.asynclevelling.utils.jda.ModalHandler;
@@ -25,7 +25,7 @@ import net.dv8tion.jda.api.interactions.modals.Modal;
 @RequiredArgsConstructor
 public class CommandSettings implements CommandExecutor {
 
-    private final GravenGuildSettingsService settingsService;
+    private final GuildSettingsService settingsService;
 
     @Override
     public SlashCommandData data() {

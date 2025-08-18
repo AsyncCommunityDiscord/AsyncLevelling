@@ -27,12 +27,12 @@ import javax.imageio.ImageIO;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @__(@Lazy))
-public class GravenGuildService {
+public class GuildService {
 
     private final GravenGuildRepository guildRepository;
     private final GravenMemberRepository memberRepository;
 
-    private final GravenMemberService memberService;
+    private final MemberService memberService;
 
     private final ImageGenerator imageGenerator;
 

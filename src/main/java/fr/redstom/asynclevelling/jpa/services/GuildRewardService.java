@@ -22,11 +22,11 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class GravenGuildRewardService {
+public class GuildRewardService {
 
     private final GravenGuildRewardRepository guildRewardRepository;
 
-    private final GravenGuildService guildService;
+    private final GuildService guildService;
 
     @Transactional
     public List<GravenGuildReward> getRewardsForGuild(Guild guild) {

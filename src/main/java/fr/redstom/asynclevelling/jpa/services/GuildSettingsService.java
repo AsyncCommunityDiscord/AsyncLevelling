@@ -14,9 +14,9 @@ import java.util.function.UnaryOperator;
 
 @Service
 @RequiredArgsConstructor
-public class GravenGuildSettingsService {
+public class GuildSettingsService {
 
-    private final GravenGuildService guildService;
+    private final GuildService guildService;
     private final GravenGuildSettingsRepository settingsRepository;
 
     public GravenGuildSettings getOrCreateByGuild(Guild guild) {

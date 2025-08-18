@@ -1,7 +1,7 @@
 package fr.redstom.asynclevelling.commands;
 
 import fr.redstom.asynclevelling.jpa.entities.GravenMember;
-import fr.redstom.asynclevelling.jpa.services.GravenMemberService;
+import fr.redstom.asynclevelling.jpa.services.MemberService;
 import fr.redstom.asynclevelling.utils.ImageGenerator;
 import fr.redstom.asynclevelling.utils.jda.Command;
 import fr.redstom.asynclevelling.utils.jda.CommandExecutor;
@@ -29,7 +29,7 @@ import javax.imageio.ImageIO;
 @RequiredArgsConstructor
 public class CommandLevel implements CommandExecutor {
 
-    private final GravenMemberService memberService;
+    private final MemberService memberService;
     private final ImageGenerator imageGenerator;
 
     @Override

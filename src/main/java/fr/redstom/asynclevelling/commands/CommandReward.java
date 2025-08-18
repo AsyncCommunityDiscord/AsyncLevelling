@@ -3,7 +3,7 @@ package fr.redstom.asynclevelling.commands;
 import static fr.redstom.asynclevelling.buttons.DeleteButton.DELETE_BUTTON;
 
 import fr.redstom.asynclevelling.jpa.entities.GravenGuildReward;
-import fr.redstom.asynclevelling.jpa.services.GravenGuildRewardService;
+import fr.redstom.asynclevelling.jpa.services.GuildRewardService;
 import fr.redstom.asynclevelling.utils.ColorPalette;
 import fr.redstom.asynclevelling.utils.jda.Command;
 import fr.redstom.asynclevelling.utils.jda.CommandExecutor;
@@ -33,7 +33,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CommandReward implements CommandExecutor {
 
-    private final GravenGuildRewardService guildRewardService;
+    private final GuildRewardService guildRewardService;
 
     @Override
     public SlashCommandData data() {

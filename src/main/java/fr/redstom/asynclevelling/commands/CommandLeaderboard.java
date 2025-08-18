@@ -1,6 +1,6 @@
 package fr.redstom.asynclevelling.commands;
 
-import fr.redstom.asynclevelling.jpa.services.GravenGuildService;
+import fr.redstom.asynclevelling.jpa.services.GuildService;
 import fr.redstom.asynclevelling.utils.jda.Command;
 import fr.redstom.asynclevelling.utils.jda.CommandExecutor;
 import fr.redstom.asynclevelling.utils.jda.EmbedUtils;
@@ -24,7 +24,7 @@ import net.dv8tion.jda.api.utils.FileUpload;
 @RequiredArgsConstructor
 public class CommandLeaderboard implements CommandExecutor {
 
-    private final GravenGuildService guildService;
+    private final GuildService guildService;
 
     @Override
     public SlashCommandData data() {

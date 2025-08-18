@@ -3,8 +3,8 @@ package fr.redstom.asynclevelling.commands;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import fr.redstom.asynclevelling.jpa.services.GravenGuildSettingsService;
-import fr.redstom.asynclevelling.jpa.services.GravenMemberService;
+import fr.redstom.asynclevelling.jpa.services.GuildSettingsService;
+import fr.redstom.asynclevelling.jpa.services.MemberService;
 import fr.redstom.asynclevelling.utils.imports.ImportEntry;
 import fr.redstom.asynclevelling.utils.jda.Command;
 import fr.redstom.asynclevelling.utils.jda.CommandExecutor;
@@ -32,9 +32,9 @@ import java.util.List;
 @Slf4j
 public class CommandImport implements CommandExecutor {
 
-    private final GravenGuildSettingsService guildSettingsService;
+    private final GuildSettingsService guildSettingsService;
     private final ObjectMapper mapper;
-    private final GravenMemberService memberService;
+    private final MemberService memberService;
 
     @Override
     public SlashCommandData data() {
