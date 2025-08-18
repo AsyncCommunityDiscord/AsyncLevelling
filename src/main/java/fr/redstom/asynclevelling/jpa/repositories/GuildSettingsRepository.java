@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface GravenGuildSettingsRepository extends CrudRepository<GravenGuildSettings, Long> {
+public interface GuildSettingsRepository extends CrudRepository<GravenGuildSettings, Long> {
 
     Optional<GravenGuildSettings> findByGuild(GravenGuild gGuild);
 }

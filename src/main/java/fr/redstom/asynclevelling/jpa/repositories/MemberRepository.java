@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface GravenMemberRepository
+public interface MemberRepository
         extends CrudRepository<GravenMember, GravenMember.GravenMemberId> {
 
     List<GravenMember> findAllByUser(GravenUser user);

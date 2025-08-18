@@ -2,7 +2,7 @@ package fr.redstom.asynclevelling.jpa.services;
 
 import fr.redstom.asynclevelling.jpa.entities.GravenGuild;
 import fr.redstom.asynclevelling.jpa.entities.GravenGuildSettings;
-import fr.redstom.asynclevelling.jpa.repositories.GravenGuildSettingsRepository;
+import fr.redstom.asynclevelling.jpa.repositories.GuildSettingsRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +17,7 @@ import java.util.function.UnaryOperator;
 public class GuildSettingsService {
 
     private final GuildService guildService;
-    private final GravenGuildSettingsRepository settingsRepository;
+    private final GuildSettingsRepository settingsRepository;
 
     public GravenGuildSettings getOrCreateByGuild(Guild guild) {
         GravenGuild gGuild = guildService.getOrCreateByDiscordGuild(guild);

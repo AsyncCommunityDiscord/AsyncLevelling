@@ -4,7 +4,7 @@ import fr.redstom.asynclevelling.jpa.entities.GravenGuild;
 import fr.redstom.asynclevelling.jpa.entities.GravenGuildSettings;
 import fr.redstom.asynclevelling.jpa.entities.GravenMember;
 import fr.redstom.asynclevelling.jpa.entities.GravenUser;
-import fr.redstom.asynclevelling.jpa.repositories.GravenMemberRepository;
+import fr.redstom.asynclevelling.jpa.repositories.MemberRepository;
 import fr.redstom.asynclevelling.utils.LevelUtils;
 
 import jakarta.annotation.Nullable;
@@ -34,7 +34,7 @@ public class MemberService {
 
     private final LevelUtils levelUtils;
 
-    private final GravenMemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     private final GuildService guildService;
     private final UserService userService;
