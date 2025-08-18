@@ -30,17 +30,17 @@ import java.util.concurrent.atomic.AtomicLong;
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Lazy)
-public class GravenMemberService {
+public class MemberService {
 
     private final LevelUtils levelUtils;
 
     private final GravenMemberRepository memberRepository;
 
-    private final GravenGuildService guildService;
-    private final GravenUserService userService;
-    private final GravenGuildRewardService rewardService;
+    private final GuildService guildService;
+    private final UserService userService;
+    private final GuildRewardService rewardService;
     private final GuildNotificationService notificationService;
-    private final GravenGuildSettingsService settingsService;
+    private final GuildSettingsService settingsService;
 
     private final JDA jda;
 

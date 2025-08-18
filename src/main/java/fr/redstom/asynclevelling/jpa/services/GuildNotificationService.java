@@ -23,9 +23,9 @@ import java.util.Optional;
 @RequiredArgsConstructor(onConstructor_ = @__(@Lazy))
 public class GuildNotificationService {
 
-    private final GravenGuildSettingsService settingsService;
-    private final GravenGuildRewardService rewardService;
-    private final GravenMemberService memberService;
+    private final GuildSettingsService settingsService;
+    private final GuildRewardService rewardService;
+    private final MemberService memberService;
 
     public Optional<Message> sendNotification(Member member, long level) {
         GravenGuildSettings settings = settingsService.getOrCreateByGuild(member.getGuild());

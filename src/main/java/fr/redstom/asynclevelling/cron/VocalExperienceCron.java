@@ -1,6 +1,6 @@
 package fr.redstom.asynclevelling.cron;
 
-import fr.redstom.asynclevelling.jpa.services.GravenMemberService;
+import fr.redstom.asynclevelling.jpa.services.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequiredArgsConstructor
 public class VocalExperienceCron {
 
-    private final GravenMemberService memberService;
+    private final MemberService memberService;
     private final JDA bot;
 
     @Value("${xp.per_30sec}")

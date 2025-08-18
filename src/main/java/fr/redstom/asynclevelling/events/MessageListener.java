@@ -1,6 +1,6 @@
 package fr.redstom.asynclevelling.events;
 
-import fr.redstom.asynclevelling.jpa.services.GravenMemberService;
+import fr.redstom.asynclevelling.jpa.services.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MessageListener extends ListenerAdapter {
 
-    private final GravenMemberService memberService;
+    private final MemberService memberService;
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {

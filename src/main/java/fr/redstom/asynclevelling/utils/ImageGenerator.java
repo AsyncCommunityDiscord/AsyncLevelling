@@ -3,7 +3,7 @@ package fr.redstom.asynclevelling.utils;
 import static fr.redstom.asynclevelling.utils.ColorPalette.*;
 
 import fr.redstom.asynclevelling.jpa.entities.GravenMember;
-import fr.redstom.asynclevelling.jpa.services.GravenMemberService;
+import fr.redstom.asynclevelling.jpa.services.MemberService;
 
 import jakarta.annotation.Nullable;
 
@@ -97,7 +97,7 @@ public class ImageGenerator {
     }
 
     private final LevelUtils levelUtils;
-    private final GravenMemberService memberService;
+    private final MemberService memberService;
 
     private static void drawServerIcon(Graphics2D g2d, Guild guild, int x, int y, Color defaultBg)
             throws IOException {

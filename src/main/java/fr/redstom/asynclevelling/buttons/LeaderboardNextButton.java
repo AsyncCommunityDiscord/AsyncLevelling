@@ -1,6 +1,6 @@
 package fr.redstom.asynclevelling.buttons;
 
-import fr.redstom.asynclevelling.jpa.services.GravenGuildService;
+import fr.redstom.asynclevelling.jpa.services.GuildService;
 import fr.redstom.asynclevelling.utils.jda.ButtonExecutor;
 import fr.redstom.asynclevelling.utils.jda.Command;
 
@@ -17,7 +17,7 @@ import net.dv8tion.jda.api.utils.FileUpload;
 @RequiredArgsConstructor
 public class LeaderboardNextButton implements ButtonExecutor {
 
-    private final GravenGuildService guildService;
+    private final GuildService guildService;
 
     @Override
     public String id() {

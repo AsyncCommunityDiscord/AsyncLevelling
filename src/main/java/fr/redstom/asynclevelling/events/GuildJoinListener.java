@@ -1,8 +1,8 @@
 package fr.redstom.asynclevelling.events;
 
 import fr.redstom.asynclevelling.jpa.entities.GravenMember;
-import fr.redstom.asynclevelling.jpa.services.GravenGuildRewardService;
-import fr.redstom.asynclevelling.jpa.services.GravenMemberService;
+import fr.redstom.asynclevelling.jpa.services.GuildRewardService;
+import fr.redstom.asynclevelling.jpa.services.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GuildJoinListener extends ListenerAdapter {
 
-    private final GravenMemberService memberService;
-    private final GravenGuildRewardService rewardService;
+    private final MemberService memberService;
+    private final GuildRewardService rewardService;
 
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
