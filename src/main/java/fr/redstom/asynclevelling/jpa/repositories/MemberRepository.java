@@ -26,7 +26,7 @@ public interface MemberRepository
 
     List<MemberDao> findAllByGuildId(long guildId);
 
-    @Query("select g from GravenMember g where g.user = ?1 and g.guild = ?2")
+    @Query("select g from MemberDao g where g.user = ?1 and g.guild = ?2")
     Optional<MemberDao> findByUserAndGuild(UserDao user, GuildDao guild);
 
     @Query(
@@ -35,7 +35,7 @@ public interface MemberRepository
     FROM (
         SELECT gm.user as user,
                ROW_NUMBER() OVER (ORDER BY gm.level DESC, gm.experience DESC, gm.user.id ASC) AS rank
-        FROM GravenMember gm
+        FROM MemberDao gm
         WHERE gm.guild = :guild
         AND NOT (gm.level = 0 AND gm.experience = 0)
     ) memberRank
@@ -46,7 +46,7 @@ public interface MemberRepository
     @Query(
             """
             SELECT g
-            FROM GravenMember g
+            FROM MemberDao g
             WHERE
                 g.guild = ?1
                 AND NOT (g.level = 0 AND g.experience = 0)
