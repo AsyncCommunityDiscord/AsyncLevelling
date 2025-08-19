@@ -39,3 +39,4 @@ out/
 
 */application.properties
 /application.properties
+.env
