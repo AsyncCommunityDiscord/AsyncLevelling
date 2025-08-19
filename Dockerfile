@@ -21,4 +21,4 @@ VOLUME /app/config
 
 COPY --from=build /app/build/libs/*.jar app.jar
 
-ENTRYPOINT ["java", "--enable-preview", "-jar", "/app/app.jar", "--spring.config.location=file:/app/config/application.properties"]
+ENTRYPOINT ["java", "--enable-preview", "-jar", "/app/app.jar"]

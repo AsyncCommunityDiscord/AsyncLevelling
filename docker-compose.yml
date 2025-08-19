@@ -1,26 +1,32 @@
----
+x-vars:
+  db-pass: &db-pass pg
+  db-user: &db-user pg
+
 services:
   pgsql:
     image: postgres:16
     restart: unless-stopped
     environment:
-      POSTGRES_USER: pg
-      POSTGRES_PASSWORD: pg
+      POSTGRES_USER: *db-user
+      POSTGRES_PASSWORD: *db-pass
     volumes:
-      - ./data/pg:/var/lib/postgresql/data
-    networks:
-      - bot-network
+      - db-data:/var/lib/postgresql/data
 
   bot:
     restart: unless-stopped
     build:
-      context: ./source
+      context: .
       dockerfile: Dockerfile
-    volumes:
-      - ./data/bot/application.properties:/app/config/application.properties:ro
-    networks:
-      - bot-network
+    env_file:
+      - .env
+    environment:
+      DB_USER: *db-user
+      DB_PASS: *db-pass
+      DB_URL: jdbc:postgresql://db:5432/
+    depends_on:
+      - pgsql
+    links:
+      - pgsql:db
 
-networks:
-  bot-network:
-    driver: bridge
+volumes:
+  db-data:
