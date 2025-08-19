@@ -1,6 +1,6 @@
 package fr.redstom.asynclevelling.commands;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenMember;
+import fr.redstom.asynclevelling.jpa.entities.MemberDao;
 import fr.redstom.asynclevelling.jpa.repositories.MemberRepository;
 import fr.redstom.asynclevelling.jpa.services.MemberService;
 import fr.redstom.asynclevelling.utils.jda.Command;
@@ -54,7 +54,7 @@ public class CommandLevels implements CommandExecutor {
         Member member = event.getOption("user").getAsMember();
         int lvl = event.getOption("lvl").getAsInt();
 
-        GravenMember gMember = memberService.getMemberByDiscordMember(member);
+        MemberDao gMember = memberService.getMemberByDiscordMember(member);
         long oldLevel = gMember.level();
 
         gMember.level(oldLevel + lvl);
@@ -82,7 +82,7 @@ public class CommandLevels implements CommandExecutor {
         Member member = event.getOption("user").getAsMember();
         int lvl = event.getOption("lvl").getAsInt();
 
-        GravenMember gMember = memberService.getMemberByDiscordMember(member);
+        MemberDao gMember = memberService.getMemberByDiscordMember(member);
         long oldLevel = gMember.level();
 
         gMember.level(oldLevel - lvl);
@@ -110,7 +110,7 @@ public class CommandLevels implements CommandExecutor {
         Member member = event.getOption("user").getAsMember();
         int lvl = event.getOption("lvl").getAsInt();
 
-        GravenMember gMember = memberService.getMemberByDiscordMember(member);
+        MemberDao gMember = memberService.getMemberByDiscordMember(member);
         long oldLevel = gMember.level();
 
         gMember.level(lvl);

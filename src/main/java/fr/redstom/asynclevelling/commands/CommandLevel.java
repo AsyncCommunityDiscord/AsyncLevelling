@@ -1,6 +1,6 @@
 package fr.redstom.asynclevelling.commands;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenMember;
+import fr.redstom.asynclevelling.jpa.entities.MemberDao;
 import fr.redstom.asynclevelling.jpa.services.MemberService;
 import fr.redstom.asynclevelling.utils.ImageGenerator;
 import fr.redstom.asynclevelling.utils.jda.Command;
@@ -54,7 +54,7 @@ public class CommandLevel implements CommandExecutor {
 
         InteractionHook hook = event.deferReply().complete();
 
-        GravenMember member = memberService.getMemberByDiscordMember(discordMember);
+        MemberDao member = memberService.getMemberByDiscordMember(discordMember);
 
         BufferedImage image = imageGenerator.generateLevelImage(discordMember, member);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

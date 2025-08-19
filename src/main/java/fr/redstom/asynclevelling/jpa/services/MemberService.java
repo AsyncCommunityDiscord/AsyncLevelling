@@ -1,9 +1,9 @@
 package fr.redstom.asynclevelling.jpa.services;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenGuild;
-import fr.redstom.asynclevelling.jpa.entities.GravenGuildSettings;
-import fr.redstom.asynclevelling.jpa.entities.GravenMember;
-import fr.redstom.asynclevelling.jpa.entities.GravenUser;
+import fr.redstom.asynclevelling.jpa.entities.GuildDao;
+import fr.redstom.asynclevelling.jpa.entities.GuildSettingsDao;
+import fr.redstom.asynclevelling.jpa.entities.MemberDao;
+import fr.redstom.asynclevelling.jpa.entities.UserDao;
 import fr.redstom.asynclevelling.jpa.repositories.MemberRepository;
 import fr.redstom.asynclevelling.utils.LevelUtils;
 
@@ -48,9 +48,9 @@ public class MemberService {
     private int timeout = 60;
 
     @Transactional
-    public GravenMember getMemberByDiscordMember(Member member) {
-        GravenUser user = userService.getOrCreateByDiscordUser(member.getUser());
-        GravenGuild guild = guildService.getOrCreateByDiscordGuild(member.getGuild());
+    public MemberDao getMemberByDiscordMember(Member member) {
+        UserDao user = userService.getOrCreateByDiscordUser(member.getUser());
+        GuildDao guild = guildService.getOrCreateByDiscordGuild(member.getGuild());
 
         return memberRepository
                 .findByUserAndGuild(user, guild)
@@ -58,24 +58,24 @@ public class MemberService {
     }
 
     @Transactional
-    public GravenMember getMemberByGuildAndMemberId(Guild guild, long userId, long baseLevel) {
-        GravenUser user = userService.getOrCreateByUserId(userId);
-        GravenGuild gGuild = guildService.getOrCreateByDiscordGuild(guild);
+    public MemberDao getMemberByGuildAndMemberId(Guild guild, long userId, long baseLevel) {
+        UserDao user = userService.getOrCreateByUserId(userId);
+        GuildDao gGuild = guildService.getOrCreateByDiscordGuild(guild);
 
         return memberRepository
                 .findByUserAndGuild(user, gGuild)
                 .orElseGet(
                         () ->
                                 memberRepository.save(
-                                        GravenMember.builder()
+                                        MemberDao.builder()
                                                 .user(user)
                                                 .guild(gGuild)
                                                 .level(baseLevel)
                                                 .build()));
     }
 
-    private GravenMember createMember(Member member, GravenUser user, GravenGuild guild) {
-        GravenGuildSettings settings = settingsService.getOrCreateByGuild(member.getGuild());
+    private MemberDao createMember(Member member, UserDao user, GuildDao guild) {
+        GuildSettingsDao settings = settingsService.getOrCreateByGuild(member.getGuild());
 
         AtomicLong level = new AtomicLong();
         if (settings.autoLevelGrant()) {
@@ -92,7 +92,7 @@ public class MemberService {
         }
 
         return memberRepository.save(
-                GravenMember.builder().user(user).guild(guild).level(level.get()).build());
+                MemberDao.builder().user(user).guild(guild).level(level.get()).build());
     }
 
     @Transactional
@@ -101,7 +101,7 @@ public class MemberService {
             return false;
         }
 
-        GravenMember gMember = getMemberByDiscordMember(member);
+        MemberDao gMember = getMemberByDiscordMember(member);
 
         Instant messageCreated = message.getTimeCreated().toInstant();
 
@@ -126,7 +126,7 @@ public class MemberService {
             return;
         }
 
-        GravenMember gMember = getMemberByDiscordMember(member);
+        MemberDao gMember = getMemberByDiscordMember(member);
 
         gMember.experience(gMember.experience() + amount);
         memberRepository.save(gMember);
@@ -147,7 +147,7 @@ public class MemberService {
 
     @Transactional
     public boolean checkLevel(Member member) {
-        GravenMember gMember = getMemberByDiscordMember(member);
+        MemberDao gMember = getMemberByDiscordMember(member);
 
         long xp = gMember.experience();
         long xpToNextLevel = levelUtils.xpForNextLevelAt(gMember.level());
@@ -178,19 +178,19 @@ public class MemberService {
 
     @Transactional
     public int getRank(Member member) {
-        GravenMember gMember = getMemberByDiscordMember(member);
+        MemberDao gMember = getMemberByDiscordMember(member);
         return memberRepository.findPositionOfMember(gMember.user(), gMember.guild());
     }
 
     @Nullable
-    public Member getDiscordMemberByMember(GravenMember gravenMember) {
-        Guild guild = jda.getGuildById(gravenMember.guild().id());
-        Member member = guild.getMemberById(gravenMember.user().id());
+    public Member getDiscordMemberByMember(MemberDao gMember) {
+        Guild guild = jda.getGuildById(gMember.guild().id());
+        Member member = guild.getMemberById(gMember.user().id());
 
         if (member == null) {
             try {
                 member =
-                        guild.retrieveMemberById(gravenMember.user().id())
+                        guild.retrieveMemberById(gMember.user().id())
                                 .useCache(true)
                                 .complete();
             } catch (Exception e) {

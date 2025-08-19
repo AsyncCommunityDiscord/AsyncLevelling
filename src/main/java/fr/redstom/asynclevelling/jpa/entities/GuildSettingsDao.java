@@ -7,19 +7,19 @@ import lombok.*;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
 
 @Entity
-@Table
+@Table(name = "graven_guild_settings")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
 @Getter
 @Setter
-public class GravenGuildSettings {
+public class GuildSettingsDao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long dummyId;
 
-    @OneToOne private GravenGuild guild;
+    @OneToOne private GuildDao guild;
 
     @Builder.Default private long notificationChannelId = -1;
     @Builder.Default private ChannelType notificationChannelType = ChannelType.UNKNOWN;

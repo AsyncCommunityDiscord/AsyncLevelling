@@ -7,13 +7,13 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 @Entity
-@Table
+@Table(name = "graven_user")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class GravenGuild {
+public class UserDao {
 
-    @Id private Long id;
+    @Id private long id;
 }

@@ -1,7 +1,7 @@
 package fr.redstom.asynclevelling.jpa.repositories;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenGuild;
-import fr.redstom.asynclevelling.jpa.entities.GravenGuildReward;
+import fr.redstom.asynclevelling.jpa.entities.GuildDao;
+import fr.redstom.asynclevelling.jpa.entities.GuildRewardDao;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface GuildRewardRepository extends CrudRepository<GravenGuildReward, Long> {
+public interface GuildRewardRepository extends CrudRepository<GuildRewardDao, Long> {
 
-    List<GravenGuildReward> findAllByGuildOrderByLevelAsc(GravenGuild guild);
+    List<GuildRewardDao> findAllByGuildOrderByLevelAsc(GuildDao guild);
 
-    Optional<GravenGuildReward> findTopByGuildAndLevelOrderByLevelDesc(
-            GravenGuild guild, long level);
+    Optional<GuildRewardDao> findTopByGuildAndLevelOrderByLevelDesc(
+            GuildDao guild, long level);
 
-    Optional<GravenGuildReward> findByGuildAndLevel(GravenGuild guild, long level);
+    Optional<GuildRewardDao> findByGuildAndLevel(GuildDao guild, long level);
 
-    Optional<GravenGuildReward> findByGuildAndRoleId(GravenGuild guild, long roleId);
+    Optional<GuildRewardDao> findByGuildAndRoleId(GuildDao guild, long roleId);
 }

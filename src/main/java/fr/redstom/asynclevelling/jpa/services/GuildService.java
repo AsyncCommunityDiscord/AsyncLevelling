@@ -1,7 +1,7 @@
 package fr.redstom.asynclevelling.jpa.services;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenGuild;
-import fr.redstom.asynclevelling.jpa.entities.GravenMember;
+import fr.redstom.asynclevelling.jpa.entities.GuildDao;
+import fr.redstom.asynclevelling.jpa.entities.MemberDao;
 import fr.redstom.asynclevelling.jpa.repositories.GuildRepository;
 import fr.redstom.asynclevelling.jpa.repositories.MemberRepository;
 import fr.redstom.asynclevelling.utils.ImageGenerator;
@@ -36,18 +36,18 @@ public class GuildService {
 
     private final ImageGenerator imageGenerator;
 
-    public GravenGuild getOrCreateByDiscordGuild(Guild guild) {
+    public GuildDao getOrCreateByDiscordGuild(Guild guild) {
         return guildRepository
                 .findById(guild.getIdLong())
                 .orElseGet(
                         () ->
                                 guildRepository.save(
-                                        GravenGuild.builder().id(guild.getIdLong()).build()));
+                                        GuildDao.builder().id(guild.getIdLong()).build()));
     }
 
     @Transactional
-    public Page<GravenMember> getLeaderboardOf(Guild guild, int page) {
-        GravenGuild gGuild = getOrCreateByDiscordGuild(guild);
+    public Page<MemberDao> getLeaderboardOf(Guild guild, int page) {
+        GuildDao gGuild = getOrCreateByDiscordGuild(guild);
 
         return memberRepository.findAllByGuild(gGuild, PageRequest.of(page - 1, 10));
     }
@@ -55,12 +55,12 @@ public class GuildService {
     @Transactional
     @SneakyThrows
     public byte[] getLeaderboardImageFor(Guild guild, int page, @Nullable Member member) {
-        Page<GravenMember> members = getLeaderboardOf(guild, page);
+        Page<MemberDao> members = getLeaderboardOf(guild, page);
         if (members.isEmpty()) {
             return null;
         }
 
-        GravenMember gMember =
+        MemberDao gMember =
                 member == null ? null : memberService.getMemberByDiscordMember(member);
         BufferedImage image =
                 imageGenerator.generateLeaderboardImage(

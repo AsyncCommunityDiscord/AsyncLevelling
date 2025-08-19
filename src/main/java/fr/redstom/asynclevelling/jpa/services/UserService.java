@@ -1,6 +1,6 @@
 package fr.redstom.asynclevelling.jpa.services;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenUser;
+import fr.redstom.asynclevelling.jpa.entities.UserDao;
 import fr.redstom.asynclevelling.jpa.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -15,18 +15,18 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public GravenUser getOrCreateByDiscordUser(User user) {
+    public UserDao getOrCreateByDiscordUser(User user) {
         return userRepository
                 .findById(user.getIdLong())
                 .orElseGet(
                         () ->
                                 userRepository.save(
-                                        GravenUser.builder().id(user.getIdLong()).build()));
+                                        UserDao.builder().id(user.getIdLong()).build()));
     }
 
-    public GravenUser getOrCreateByUserId(long userId) {
+    public UserDao getOrCreateByUserId(long userId) {
         return userRepository
                 .findById(userId)
-                .orElseGet(() -> userRepository.save(GravenUser.builder().id(userId).build()));
+                .orElseGet(() -> userRepository.save(UserDao.builder().id(userId).build()));
     }
 }

@@ -1,9 +1,9 @@
 package fr.redstom.asynclevelling.jpa.repositories;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenGuild;
+import fr.redstom.asynclevelling.jpa.entities.GuildDao;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GuildRepository extends CrudRepository<GravenGuild, Long> {}
+public interface GuildRepository extends CrudRepository<GuildDao, Long> {}

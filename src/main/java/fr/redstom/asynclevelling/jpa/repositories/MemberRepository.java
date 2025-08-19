@@ -1,8 +1,8 @@
 package fr.redstom.asynclevelling.jpa.repositories;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenGuild;
-import fr.redstom.asynclevelling.jpa.entities.GravenMember;
-import fr.redstom.asynclevelling.jpa.entities.GravenUser;
+import fr.redstom.asynclevelling.jpa.entities.GuildDao;
+import fr.redstom.asynclevelling.jpa.entities.MemberDao;
+import fr.redstom.asynclevelling.jpa.entities.UserDao;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,18 +16,18 @@ import java.util.Optional;
 
 @Repository
 public interface MemberRepository
-        extends CrudRepository<GravenMember, GravenMember.GravenMemberId> {
+        extends CrudRepository<MemberDao, MemberDao.MemberDaoId> {
 
-    List<GravenMember> findAllByUser(GravenUser user);
+    List<MemberDao> findAllByUser(UserDao user);
 
-    List<GravenMember> findAllByUserId(long userId);
+    List<MemberDao> findAllByUserId(long userId);
 
-    List<GravenMember> findAllByGuild(GravenGuild guild);
+    List<MemberDao> findAllByGuild(GuildDao guild);
 
-    List<GravenMember> findAllByGuildId(long guildId);
+    List<MemberDao> findAllByGuildId(long guildId);
 
-    @Query("select g from GravenMember g where g.user = ?1 and g.guild = ?2")
-    Optional<GravenMember> findByUserAndGuild(GravenUser user, GravenGuild guild);
+    @Query("select g from MemberDao g where g.user = ?1 and g.guild = ?2")
+    Optional<MemberDao> findByUserAndGuild(UserDao user, GuildDao guild);
 
     @Query(
             """
@@ -35,18 +35,18 @@ public interface MemberRepository
     FROM (
         SELECT gm.user as user,
                ROW_NUMBER() OVER (ORDER BY gm.level DESC, gm.experience DESC, gm.user.id ASC) AS rank
-        FROM GravenMember gm
+        FROM MemberDao gm
         WHERE gm.guild = :guild
         AND NOT (gm.level = 0 AND gm.experience = 0)
     ) memberRank
     WHERE memberRank.user = :user
 """)
-    int findPositionOfMember(@Param("user") GravenUser user, @Param("guild") GravenGuild guild);
+    int findPositionOfMember(@Param("user") UserDao user, @Param("guild") GuildDao guild);
 
     @Query(
             """
             SELECT g
-            FROM GravenMember g
+            FROM MemberDao g
             WHERE
                 g.guild = ?1
                 AND NOT (g.level = 0 AND g.experience = 0)
@@ -55,5 +55,5 @@ public interface MemberRepository
                 g.experience DESC,
                 g.user.id ASC
             """)
-    Page<GravenMember> findAllByGuild(GravenGuild guild, Pageable config);
+    Page<MemberDao> findAllByGuild(GuildDao guild, Pageable config);
 }

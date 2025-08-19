@@ -1,7 +1,7 @@
 package fr.redstom.asynclevelling.jpa.services;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenGuild;
-import fr.redstom.asynclevelling.jpa.entities.GravenGuildReward;
+import fr.redstom.asynclevelling.jpa.entities.GuildDao;
+import fr.redstom.asynclevelling.jpa.entities.GuildRewardDao;
 import fr.redstom.asynclevelling.jpa.repositories.GuildRewardRepository;
 
 import jakarta.transaction.Transactional;
@@ -29,19 +29,19 @@ public class GuildRewardService {
     private final GuildService guildService;
 
     @Transactional
-    public List<GravenGuildReward> getRewardsForGuild(Guild guild) {
-        GravenGuild gGuild = guildService.getOrCreateByDiscordGuild(guild);
+    public List<GuildRewardDao> getRewardsForGuild(Guild guild) {
+        GuildDao gGuild = guildService.getOrCreateByDiscordGuild(guild);
 
         return guildRewardRepository.findAllByGuildOrderByLevelAsc(gGuild);
     }
 
     @Transactional
-    public GravenGuildReward createReward(Guild guild, long level, Role roleToGive)
+    public GuildRewardDao createReward(Guild guild, long level, Role roleToGive)
             throws DataIntegrityViolationException {
-        GravenGuild gGuild = guildService.getOrCreateByDiscordGuild(guild);
+        GuildDao gGuild = guildService.getOrCreateByDiscordGuild(guild);
 
-        GravenGuildReward reward =
-                GravenGuildReward.builder()
+        GuildRewardDao reward =
+                GuildRewardDao.builder()
                         .guild(gGuild)
                         .level(level)
                         .roleId(roleToGive.getIdLong())
@@ -50,24 +50,24 @@ public class GuildRewardService {
         return guildRewardRepository.save(reward);
     }
 
-    public Optional<GravenGuildReward> getRewardForGuildAtLevel(Guild guild, long level) {
-        GravenGuild gGuild = guildService.getOrCreateByDiscordGuild(guild);
+    public Optional<GuildRewardDao> getRewardForGuildAtLevel(Guild guild, long level) {
+        GuildDao gGuild = guildService.getOrCreateByDiscordGuild(guild);
         return guildRewardRepository.findByGuildAndLevel(gGuild, level);
     }
 
-    public Optional<GravenGuildReward> getClosestRewardForGuildAtLevel(Guild guild, long level) {
-        GravenGuild gGuild = guildService.getOrCreateByDiscordGuild(guild);
+    public Optional<GuildRewardDao> getClosestRewardForGuildAtLevel(Guild guild, long level) {
+        GuildDao gGuild = guildService.getOrCreateByDiscordGuild(guild);
         return guildRewardRepository.findTopByGuildAndLevelOrderByLevelDesc(gGuild, level);
     }
 
     public void grantReward(Member member, long level) {
-        Optional<GravenGuildReward> oReward =
+        Optional<GuildRewardDao> oReward =
                 getClosestRewardForGuildAtLevel(member.getGuild(), level);
         if (oReward.isEmpty()) {
             return;
         }
 
-        GravenGuildReward reward = oReward.get();
+        GuildRewardDao reward = oReward.get();
         if (member.getRoles().stream().anyMatch(role -> role.getIdLong() == reward.roleId())) {
             return;
         }
@@ -85,12 +85,12 @@ public class GuildRewardService {
                 role.getGuild().getName());
     }
 
-    public Optional<GravenGuildReward> getByMemberRole(Member member, Role role) {
-        GravenGuild gGuild = guildService.getOrCreateByDiscordGuild(member.getGuild());
+    public Optional<GuildRewardDao> getByMemberRole(Member member, Role role) {
+        GuildDao gGuild = guildService.getOrCreateByDiscordGuild(member.getGuild());
         return guildRewardRepository.findByGuildAndRoleId(gGuild, role.getIdLong());
     }
 
-    public void delete(GravenGuildReward reward) {
+    public void delete(GuildRewardDao reward) {
         guildRewardRepository.delete(reward);
     }
 }

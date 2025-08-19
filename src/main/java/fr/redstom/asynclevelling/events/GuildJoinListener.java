@@ -1,6 +1,6 @@
 package fr.redstom.asynclevelling.events;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenMember;
+import fr.redstom.asynclevelling.jpa.entities.MemberDao;
 import fr.redstom.asynclevelling.jpa.services.GuildRewardService;
 import fr.redstom.asynclevelling.jpa.services.MemberService;
 
@@ -23,7 +23,7 @@ public class GuildJoinListener extends ListenerAdapter {
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         Member member = event.getMember();
 
-        GravenMember gMember = memberService.getMemberByDiscordMember(member);
+        MemberDao gMember = memberService.getMemberByDiscordMember(member);
         rewardService.grantReward(member, gMember.level());
     }
 }

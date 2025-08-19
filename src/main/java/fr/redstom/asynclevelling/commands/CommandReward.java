@@ -2,7 +2,7 @@ package fr.redstom.asynclevelling.commands;
 
 import static fr.redstom.asynclevelling.buttons.DeleteButton.DELETE_BUTTON;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenGuildReward;
+import fr.redstom.asynclevelling.jpa.entities.GuildRewardDao;
 import fr.redstom.asynclevelling.jpa.services.GuildRewardService;
 import fr.redstom.asynclevelling.utils.ColorPalette;
 import fr.redstom.asynclevelling.utils.jda.Command;
@@ -113,7 +113,7 @@ public class CommandReward implements CommandExecutor {
     private void remove(SlashCommandInteractionEvent event) {
         long level = event.getOption("level").getAsLong();
 
-        Optional<GravenGuildReward> reward =
+        Optional<GuildRewardDao> reward =
                 guildRewardService.getRewardForGuildAtLevel(event.getGuild(), level);
 
         if (reward.isEmpty()) {
@@ -152,12 +152,12 @@ public class CommandReward implements CommandExecutor {
     }
 
     private void list(SlashCommandInteractionEvent event) {
-        List<GravenGuildReward> rewardsForGuild =
+        List<GuildRewardDao> rewardsForGuild =
                 guildRewardService.getRewardsForGuild(event.getGuild());
 
         StringBuilder rewards = new StringBuilder();
 
-        for (GravenGuildReward reward : rewardsForGuild) {
+        for (GuildRewardDao reward : rewardsForGuild) {
             rewards.append("Niveau **" + reward.level() + "** : <@&" + reward.roleId() + ">\n");
         }
 
