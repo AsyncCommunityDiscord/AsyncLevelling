@@ -1,8 +1,8 @@
 package fr.redstom.asynclevelling.jpa.services;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenGuildReward;
-import fr.redstom.asynclevelling.jpa.entities.GravenGuildSettings;
-import fr.redstom.asynclevelling.jpa.entities.GravenMember;
+import fr.redstom.asynclevelling.jpa.entities.GuildRewardDao;
+import fr.redstom.asynclevelling.jpa.entities.GuildSettingsDao;
+import fr.redstom.asynclevelling.jpa.entities.MemberDao;
 import fr.redstom.asynclevelling.utils.PlaceholderMessage;
 
 import lombok.RequiredArgsConstructor;
@@ -28,8 +28,8 @@ public class GuildNotificationService {
     private final MemberService memberService;
 
     public Optional<Message> sendNotification(Member member, long level) {
-        GravenGuildSettings settings = settingsService.getOrCreateByGuild(member.getGuild());
-        Optional<GravenGuildReward> reward =
+        GuildSettingsDao settings = settingsService.getOrCreateByGuild(member.getGuild());
+        Optional<GuildRewardDao> reward =
                 rewardService.getRewardForGuildAtLevel(member.getGuild(), level);
 
         if (reward.isPresent() && !settings.rewardNotificationEnabled()) {
@@ -52,8 +52,8 @@ public class GuildNotificationService {
     }
 
     private Optional<Message> sendDmNotification(
-            Member member, GravenGuildSettings settings, Optional<GravenGuildReward> reward) {
-        GravenMember gMember = memberService.getMemberByDiscordMember(member);
+            Member member, GuildSettingsDao settings, Optional<GuildRewardDao> reward) {
+        MemberDao gMember = memberService.getMemberByDiscordMember(member);
 
         PrivateChannel channel = member.getUser().openPrivateChannel().complete();
 
@@ -68,8 +68,8 @@ public class GuildNotificationService {
     }
 
     private Optional<Message> sendServerNotification(
-            Member member, GravenGuildSettings settings, Optional<GravenGuildReward> reward) {
-        GravenMember gMember = memberService.getMemberByDiscordMember(member);
+            Member member, GuildSettingsDao settings, Optional<GuildRewardDao> reward) {
+        MemberDao gMember = memberService.getMemberByDiscordMember(member);
 
         MessageChannel channel =
                 (MessageChannel)
@@ -91,7 +91,7 @@ public class GuildNotificationService {
                         .complete());
     }
 
-    private String getMessage(Member member, GravenMember gMember, GravenGuildSettings settings) {
+    private String getMessage(Member member, MemberDao gMember, GuildSettingsDao settings) {
         return new PlaceholderMessage(settings.notificationMessage())
                 .with("user.mention", member.getAsMention())
                 .with("user.name", member.getEffectiveName())
@@ -102,9 +102,9 @@ public class GuildNotificationService {
 
     private String getRewardMessage(
             Member member,
-            GravenMember gMember,
-            GravenGuildSettings settings,
-            GravenGuildReward reward) {
+            MemberDao gMember,
+            GuildSettingsDao settings,
+            GuildRewardDao reward) {
         Role role = member.getGuild().getRoleById(reward.roleId());
 
         return new PlaceholderMessage(settings.rewardNotificationMessage())

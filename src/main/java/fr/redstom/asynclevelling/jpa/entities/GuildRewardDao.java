@@ -5,13 +5,13 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"guild_id", "level"})})
+@Table(name = "graven_guild_reward", uniqueConstraints = {@UniqueConstraint(columnNames = {"guild_id", "level"})})
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class GravenGuildReward {
+public class GuildRewardDao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -19,7 +19,7 @@ public class GravenGuildReward {
 
     @ManyToOne
     @JoinColumn(name = "guild_id")
-    private GravenGuild guild;
+    private GuildDao guild;
 
     private long level;
 

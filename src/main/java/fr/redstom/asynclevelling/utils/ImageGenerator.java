@@ -2,7 +2,7 @@ package fr.redstom.asynclevelling.utils;
 
 import static fr.redstom.asynclevelling.utils.ColorPalette.*;
 
-import fr.redstom.asynclevelling.jpa.entities.GravenMember;
+import fr.redstom.asynclevelling.jpa.entities.MemberDao;
 import fr.redstom.asynclevelling.jpa.services.MemberService;
 
 import jakarta.annotation.Nullable;
@@ -130,7 +130,7 @@ public class ImageGenerator {
     }
 
     @SneakyThrows
-    public BufferedImage generateLevelImage(Member member, GravenMember gMember) {
+    public BufferedImage generateLevelImage(Member member, MemberDao gMember) {
         Color accent = member.getColor() == null ? ORANGE : member.getColor();
 
         InputStream avatar = member.getEffectiveAvatar().download(512).join();
@@ -271,12 +271,12 @@ public class ImageGenerator {
     @SneakyThrows
     public BufferedImage generateLeaderboardImage(
             int page,
-            @Nullable GravenMember user,
-            List<GravenMember> members,
-            Function<GravenMember, Member> memberMapper) {
+            @Nullable MemberDao user,
+            List<MemberDao> members,
+            Function<MemberDao, Member> memberMapper) {
         List<Member> dMembers = members.stream().map(memberMapper).toList();
 
-        GravenMember originalUser = user;
+        MemberDao originalUser = user;
         if (user != null) {
             if (members.stream().anyMatch(u -> user.user().id() == u.user().id())) {
                 originalUser = null;
@@ -341,7 +341,7 @@ public class ImageGenerator {
             Member discordMember = dMembers.get(i);
 
             if (discordMember == null) {
-                GravenMember gravenMember = members.get(i);
+                MemberDao gMember = members.get(i);
 
                 drawMemberPosition(
                         g2d,
@@ -349,12 +349,12 @@ public class ImageGenerator {
                         Color.BLACK,
                         null,
                         (page - 1) * 10 + i + 1,
-                        gravenMember.level(),
+                        gMember.level(),
                         "Utilisateur introuvable");
                 continue;
             }
 
-            GravenMember gravenMember = members.get(i);
+            MemberDao gMember = members.get(i);
 
             Image avatar = ImageIO.read(discordMember.getEffectiveAvatar().download().join());
 
@@ -364,7 +364,7 @@ public class ImageGenerator {
                     discordMember.getColor(),
                     avatar,
                     (page - 1) * 10 + i + 1,
-                    gravenMember.level(),
+                    gMember.level(),
                     discordMember.getUser().getName());
         }
         for (int i = 0; i < 10 - members.size(); i++) {

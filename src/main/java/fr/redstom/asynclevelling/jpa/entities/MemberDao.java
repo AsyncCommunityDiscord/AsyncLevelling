@@ -8,18 +8,18 @@ import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
-@Table
-@IdClass(GravenMember.GravenMemberId.class)
+@Table(name = "graven_member")
+@IdClass(MemberDao.MemberDaoId.class)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class GravenMember {
+public class MemberDao {
 
-    @ManyToOne @Id private GravenUser user;
+    @ManyToOne @Id private UserDao user;
 
-    @ManyToOne @Id private GravenGuild guild;
+    @ManyToOne @Id private GuildDao guild;
 
     @Builder.Default private Instant lastMessageAt = Instant.EPOCH;
 
@@ -30,9 +30,9 @@ public class GravenMember {
     @NoArgsConstructor
     @Getter
     @Setter
-    public static class GravenMemberId implements Serializable {
-        private GravenUser user;
+    public static class MemberDaoId implements Serializable {
+        private UserDao user;
 
-        private GravenGuild guild;
+        private GuildDao guild;
     }
 }
