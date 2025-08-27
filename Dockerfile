@@ -2,7 +2,7 @@ FROM eclipse-temurin:22-jdk-noble AS build
 ENV JAVA_TOOL_OPTIONS="--enable-preview"
 WORKDIR /app
 COPY . .
-RUN ./gradlew bootJar --no-daemon
+RUN --mount=type=cache,target=/root/.gradle ./gradlew bootJar --no-daemon
 
 FROM eclipse-temurin:22-jre-noble AS runtime
 WORKDIR /app
