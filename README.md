@@ -11,21 +11,23 @@ discord.gg/graven</code> both by the moderators and the members.
 Most of the contributors are part of the staff but the members are also allowed to contribute.
 
 ---
+
 ## Global information
 
-| Global information |                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Description        | AsyncLevelling is the bot used to manage the activity levels on the Async - Community discord server. It tracks and manages users' activity levels, allowing for a dynamic and engaging community experience.                                                                                                                                                                                |
-| Collaborators      | <img src="https://avatars.githubusercontent.com/u/44524788?v=4" alt="drawing" width="25"/> [RedsTom](https://github.com/RedsTom)                                                                                                                                                                                                                                                                 |
-| Version            | 1.0.0                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Global information |                                                                                                                                                                                                               |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description        | AsyncLevelling is the bot used to manage the activity levels on the Async - Community discord server. It tracks and manages users' activity levels, allowing for a dynamic and engaging community experience. |
+| Collaborators      | <img src="https://avatars.githubusercontent.com/u/44524788?v=4" alt="drawing" width="25"/> [RedsTom](https://github.com/RedsTom)                                                                              |
+| Version            | 1.0.0                                                                                                                                                                                                         |
 
 ---
 
 ## State
+
 ![](https://img.shields.io/badge/State-In_production-green?style=for-the-badge)
 
 ![](https://img.shields.io/github/issues/AsyncCommunityDiscord/AsyncLevelling?style=for-the-badge)
 
 ![](https://img.shields.io/github/issues-pr/AsyncCommunityDiscord/AsyncLevelling?style=for-the-badge)
 
---- 
+---
