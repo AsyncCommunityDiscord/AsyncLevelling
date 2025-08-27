@@ -7,5 +7,5 @@ RUN ./gradlew bootJar --no-daemon
 FROM eclipse-temurin:22-jre-noble AS runtime
 WORKDIR /app
 VOLUME /app/config
-COPY --from=build /app/build/libs/*.jar app.jar
+COPY --from=build /app/build/libs/AsyncLevelling-*.jar app.jar
 ENTRYPOINT ["java", "--enable-preview", "-jar", "/app/app.jar"]
