@@ -19,9 +19,7 @@ public class UserService {
         return userRepository
                 .findById(user.getIdLong())
                 .orElseGet(
-                        () ->
-                                userRepository.save(
-                                        UserDao.builder().id(user.getIdLong()).build()));
+                        () -> userRepository.save(UserDao.builder().id(user.getIdLong()).build()));
     }
 
     public UserDao getOrCreateByUserId(long userId) {

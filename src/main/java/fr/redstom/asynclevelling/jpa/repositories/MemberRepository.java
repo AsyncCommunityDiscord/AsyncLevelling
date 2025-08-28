@@ -15,8 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface MemberRepository
-        extends CrudRepository<MemberDao, MemberDao.MemberDaoId> {
+public interface MemberRepository extends CrudRepository<MemberDao, MemberDao.MemberDaoId> {
 
     List<MemberDao> findAllByUser(UserDao user);
 

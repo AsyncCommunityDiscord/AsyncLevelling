@@ -189,10 +189,7 @@ public class MemberService {
 
         if (member == null) {
             try {
-                member =
-                        guild.retrieveMemberById(gMember.user().id())
-                                .useCache(true)
-                                .complete();
+                member = guild.retrieveMemberById(gMember.user().id()).useCache(true).complete();
             } catch (Exception e) {
                 return null;
             }

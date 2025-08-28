@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "graven_guild_reward", uniqueConstraints = {@UniqueConstraint(columnNames = {"guild_id", "level"})})
+@Table(
+        name = "graven_guild_reward",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"guild_id", "level"})})
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

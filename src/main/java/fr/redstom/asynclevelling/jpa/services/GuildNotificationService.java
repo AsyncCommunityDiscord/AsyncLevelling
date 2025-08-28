@@ -101,10 +101,7 @@ public class GuildNotificationService {
     }
 
     private String getRewardMessage(
-            Member member,
-            MemberDao gMember,
-            GuildSettingsDao settings,
-            GuildRewardDao reward) {
+            Member member, MemberDao gMember, GuildSettingsDao settings, GuildRewardDao reward) {
         Role role = member.getGuild().getRoleById(reward.roleId());
 
         return new PlaceholderMessage(settings.rewardNotificationMessage())

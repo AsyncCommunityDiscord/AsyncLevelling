@@ -60,8 +60,7 @@ public class GuildService {
             return null;
         }
 
-        MemberDao gMember =
-                member == null ? null : memberService.getMemberByDiscordMember(member);
+        MemberDao gMember = member == null ? null : memberService.getMemberByDiscordMember(member);
         BufferedImage image =
                 imageGenerator.generateLeaderboardImage(
                         page,

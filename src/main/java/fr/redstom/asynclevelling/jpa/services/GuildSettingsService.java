@@ -30,8 +30,7 @@ public class GuildSettingsService {
                                         GuildSettingsDao.builder().guild(gGuild).build()));
     }
 
-    public GuildSettingsDao applyAndSave(
-            Guild guild, UnaryOperator<GuildSettingsDao> settings) {
+    public GuildSettingsDao applyAndSave(Guild guild, UnaryOperator<GuildSettingsDao> settings) {
         GuildSettingsDao gSettings = getOrCreateByGuild(guild);
         gSettings = settings.apply(gSettings);
 

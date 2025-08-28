@@ -14,8 +14,7 @@ public interface GuildRewardRepository extends CrudRepository<GuildRewardDao, Lo
 
     List<GuildRewardDao> findAllByGuildOrderByLevelAsc(GuildDao guild);
 
-    Optional<GuildRewardDao> findTopByGuildAndLevelOrderByLevelDesc(
-            GuildDao guild, long level);
+    Optional<GuildRewardDao> findTopByGuildAndLevelOrderByLevelDesc(GuildDao guild, long level);
 
     Optional<GuildRewardDao> findByGuildAndLevel(GuildDao guild, long level);
 
