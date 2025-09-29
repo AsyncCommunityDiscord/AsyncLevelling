@@ -29,7 +29,7 @@ public interface MemberRepository extends CrudRepository<MemberDao, MemberDao.Me
     Optional<MemberDao> findByUserAndGuild(UserDao user, GuildDao guild);
 
     @Query(
-            """
+"""
     SELECT memberRank.rank
     FROM (
         SELECT gm.user as user,

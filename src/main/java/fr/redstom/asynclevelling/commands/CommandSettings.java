@@ -207,7 +207,7 @@ public class CommandSettings implements CommandExecutor {
 
     private void sendPlaceholders(SlashCommandInteractionEvent event) {
         event.reply(
-                        """
+"""
 Voici la liste des placeholders utilisables dans les messages de notification :
 - `%user.mention%` : Mentionne l'utilisateur
 - `%user.name%` : Nom de l'utilisateur
