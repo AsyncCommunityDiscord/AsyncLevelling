@@ -3,6 +3,11 @@
   "extends": ["config:recommended"],
   "packageRules": [
     {
+      "matchPackageNames": ["gradle/actions"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
       "matchPackageNames": ["gradle"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
